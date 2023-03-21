@@ -1,0 +1,4 @@
+map <C-i> recolor
+
+map F toggle_fullscreen
+map [fullscreen] f toggle_fullscreen

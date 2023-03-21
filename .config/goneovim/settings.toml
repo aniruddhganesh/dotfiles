@@ -1,0 +1,22 @@
+# Config for go-neovim
+
+[Editor]
+IgnoreSaveConfirmationWithCloseButton = false
+FontFamily = "JetBrainsMono NF"
+FontSize = 10
+Letterspace = 0
+SmoothScroll = true
+
+Clipboard = true
+HideMouseWhenTyping = false
+
+ClickEffect = false
+
+[Cursor]
+SmoothMove = true
+Duration = 55
+
+[Tabline]
+Visible = true
+ShowIcon = true
+
