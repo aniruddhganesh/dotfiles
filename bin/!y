@@ -1,0 +1,8 @@
+#!/bin/bash
+
+##	***	THE !BANG! UTILS    ***		##
+
+BROWSER=/usr/bin/qutebrowser
+#url=http://vesuvius.lan:9010/youtube.com/results?search_query=$1+$2+$3+$4+$5
+url=https://www.youtube.com/results?search_query=$1+$2+$3+$4+$5+$6
+$BROWSER $url
