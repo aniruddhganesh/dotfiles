@@ -9,4 +9,7 @@ Here are the dotfiles for Linux setup.
 - Bookmarks
 
 
+Screenshots: :)
+![Setup Screenhot](./screenshots/fullsetup.png?raw=true "This is my setup")
+
 ....Basically _Everything_ I need to get back up and running!
