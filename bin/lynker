@@ -1,0 +1,37 @@
+#!/bin/bash
+
+## To open links in respected application
+### 15/01/2023 ###
+
+export BROWSER=/usr/bin/qutebrowser
+#export BROwSER=/usr/bin/firefox
+
+if [ -z "$1" ]; then
+   url="$(xclip -o)"n
+else
+   url="$1"
+fi
+
+case "$url" in
+	*mkv|*webm|*mp4|*youtube.com/watch*|*youtube.com/shorts*|*youtube.be*|*odysee.com*) # videos in mpv
+	    setsid -f mpv -quiet "$url" > /dev/null 2>&1 ;;
+
+	*png|*jpg|*jpeg|*gif) # images in sxiv
+	    export IMG="$(echo "$url" | sed "s/.*\///;s/%20/ /g")" ## Remove extra crap for img name
+	    curl -sL "$url" > "/tmp/$IMG" && feh -a "/tmp/$IMG" >/dev/null 2>&1 & ;;
+
+	*pdf|*cbz|*cbr)  # pdf files in zathura
+	    export PDF="$(echo "$url" | sed "s/.*\//;s/%20/ /g")"  
+	    curl -sL "$url" > "/tmp/$PDF" && zathura "/tmp/$PDF">/dev/null 2>&1 & ;;
+
+	*mp3|*flac|*opus|*mp3?source*|*m4a) # audio files in qndl
+	    qndl "$url" 'curl -LO' >/dev/null 2>&1 ;;
+
+  *reddit.com/*)
+      export redirect="$( echo "$url" | sed 's/www.reddit.com/libreddit.kavin.rocks/')" >/dev/null 2>&1 
+      setsid -f "$BROWSER" $redirect ;;
+
+   	 *) # anything else open in browser
+	    readable -o /tmp/x.html -s ~/.config/newsboat/style.css "$url" >/dev/null 2>&1 &&
+		  setsid -f "$BROWSER" /tmp/x.html >/dev/null 2>&1
+esac

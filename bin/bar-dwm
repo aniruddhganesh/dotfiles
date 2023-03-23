@@ -1,0 +1,21 @@
+#!/bin/bash
+# Functions to clean stuff up
+bar_bluetooth() {
+  bluetoothctl devices Connected | cut -d ' ' -f3-30
+}
+
+bar_time() {
+  date +%I:%M
+}
+
+## DWM BAR SCRIPT
+while true
+do
+  bar_items=""
+  bar_items="$bar_items$(bar_time)"
+  bar_items="$bar_items ┊ $(bar_bluetooth)"
+
+
+  xsetroot -name " $bar_items "  &
+  sleep 30s
+done
