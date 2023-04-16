@@ -2,9 +2,9 @@ bindkey -v
 zstyle :compinstall filename '/home/ani/.zshrc'
 
 ## AUTOEXEC STARTX
-if [[ "$(tty)" = "/dev/tty1" ]]; then
-  pgrep dwm || startx ~/.config/X11/xinitrc
-fi
+#if [[ "$(tty)" = "/dev/tty1" ]]; then
+#	sway --unsupported-gpu
+#fi
 
 # History
 HISTFILE=$HOME/.zsh_history
@@ -25,14 +25,10 @@ zstyle ':completion:*' menu select matcher-list 'm:{a-z}={A-Za-z}'
 zmodload zsh/complist
 
 # Alias
-#alias ls="ls --color"
-alias ls="/opt/coreutils/bin/ls"
+alias ls="ls --color"
 alias nv="nvim"
 alias mx="alsamixer"
-alias ssh="kitty +kitten ssh"
 alias sz="du -m --si"
-alias xbi="doas xbps-install"
-alias xbr="doas xbps-remove"
 
 # Prompt
 export PS1=" %F[%f %U%F{magenta}%n%f @ %F{cyan}%~%f%u %F]%f "
@@ -44,4 +40,4 @@ export BROWSER=/usr/bin/qutebrowser
 export PATH=$PATH:/home/lark/.local/bin:$PATH
 
 ## Plugins
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
