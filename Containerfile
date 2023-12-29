@@ -1,7 +1,8 @@
 # Alpine
 FROM alpine:latest
 ENV LC_CTYPE C.UTF-8
-RUN apk update && apk add --no-cache python3 clang w3m wget curl vim zsh sudo gdb
+RUN apk update && apk add --no-cache python3 clang w3m wget curl vim zsh sudo gdb \ 
+				     git neovim zsh-syntax-highlighting
 
 RUN adduser -D -u 1000 dots -s /bin/zsh && echo "dots:dots" | chpasswd && adduser dots wheel
 RUN sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
