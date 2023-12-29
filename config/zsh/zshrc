@@ -1,0 +1,48 @@
+# *-- Multi File ZSH Config *-- #
+source $ZDOTDIR/plugs.zsh
+
+
+bindkey -e
+
+# History
+HISTFILE=$ZDOTDIR/zsh_history
+SAVEHIST=1000
+HISTSIZE=999
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_EXPIRE_DUPS_FIRST
+
+# Auto complete
+autoload -U history-searchend
+bindkey "^[[A" history-beginning-search-backward 
+bindkey "^[[B" history-beginning-search-forward 
+# Completion
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' menu select matcher-list 'm:{a-z}={A-Za-z}'
+
+# Completion menus
+zmodload zsh/complist
+
+# Prompt
+source $ZDOTDIR/common.zsh
+
+# Alias
+alias ls="ls --color"
+alias nv="nvim"
+alias sz="du -m --si"
+alias nosleep="xset -dpms ; xset s noblank ; xset s off"
+alias sc="sc-im"
+alias ra="ranger"
+alias serv="python3 -m http.server"
+
+# Defaults
+export EDITOR=/usr/bin/vim
+export BROWSER=/usr/local/bin/chrome
+# PATH
+export PATH=$PATH:$HOME/.local/bin:$PATH
+
+# Envars
+export LC_ALL=en_US.UTF-8
+export QT_QPA_PLATFORMTHEME=qt5ct
+export LANG=en_US.UTF-8
+# export TERM=xterm-256color

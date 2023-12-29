@@ -1,0 +1,8 @@
+FROM ubuntu:latest
+ENV LC_CTYPE C.UTF-8
+RUN apt-get update && apt install -y sudo python3 gcc clangd w3m wget curl vim zsh
+
+RUN useradd -d /home/sid -m -G sudo -p sid -s /bin/zsh sid
+RUN echo "sid:sid" | chpasswd
+
+USER sid

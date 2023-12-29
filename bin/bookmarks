@@ -1,0 +1,23 @@
+#!/bin/bash
+
+##	***	THE !BANG!‚UTILS    *** 	##
+
+bookmarks=/home/lark/Desktop/bookmarks
+dmenu=$(cat $bookmarks | dmenu -l 5 -p "Surf Bookmarks: " | cut -d':' -f2-10)
+
+handler() {   ## handles and checks if directory or link
+    case $dmenu in
+        *http*|*html)
+            openIn=/usr/bin/librewolf ;;
+        *pdf)
+            dmenu=$(echo $dmenu | sed 's/^[ ]*//') # clear blank spaces
+            openIn=/usr/bin/zathura     ;;
+        *.sh) # If Executable run script after clearing blank spaces
+            dmenu=$(echo $dmenu | sed 's/^[ ]*//')
+            dmenu="$dmenu"
+            openIn="/usr/bin/bash -c" ;;
+    esac
+}
+
+handler
+$openIn "$dmenu"
